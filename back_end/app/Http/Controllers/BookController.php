@@ -46,9 +46,9 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $book = Book::find($id);
-        if ($book->user_id != auth()->id()) {
-            return response()->json(['error' => 'You are not authorized to update this page.'], 403);
-        }
+        // if ($book->user_id != auth()->id()) {
+        //     return response()->json(['error' => 'You are not authorized to update this page.'], 403);
+        // }
         $book->title = $request->input('title');
         $book->description = $request->input('description');
         // $book->user_id = $request->input('user_id');
@@ -66,9 +66,9 @@ class BookController extends Controller
             return response()->json(['error' => 'Book not found.'], 404);
         }
 
-        if ($book->user_id != auth()->id()) {
-            return response()->json(['error' => 'You are not authorized to delete this book.'], 403);
-        }
+        // if ($book->user_id != auth()->id()) {
+        //     return response()->json(['error' => 'You are not authorized to delete this book.'], 403);
+        // }
 
         // Delete related pages
         $book->page()->delete();
